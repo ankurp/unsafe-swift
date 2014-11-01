@@ -1,9 +1,8 @@
 🔨.playground
 =
 
-C experiments in Swift, simulating try catch block using setjmp and longjmp.
-
-![Playground](https://github.com/ankurp/unsafe-swift/blob/master/playground.png)
+# C experiments in Swift
+## Simulating try catch block using setjmp and longjmp
 
 Swift is a great language because it lets you write safe code with concepts like optional, immmutability, automatic memory management using ARC and more. But there is also another side to Swift which is less known. That is you can use it to write unsafe code. In Swift we have access to all C library and functions. Using these you can allocate raw memory using `malloc`, or release it using `free` and manipulate the memory and perform pointer arithematic. These libraries are available in Swift to offer interoperability into Objective-C and usually begin with the word `unsafe` letting the developer know they are going down the dark path of seg fault. This power to write safe code to prevent beginner from shooting themselves in the foot but also giving advance developers who have been in the trenches of writing C or C++ code is what make Swift great.
 
@@ -36,6 +35,4 @@ This was a simplified example but you can run the playground file on this github
 
 This is in no way a good way to implement try-catch in Swift but a good experiment to see how we can do it using C. The ability to do memory allocation and manipulation is promising for advance developers as now you do not have to write C code to do so. It is possible to do it all in Swift making it a versatile language unlike Java or Scala.
 
-
-
-
+![Playground](https://github.com/ankurp/unsafe-swift/blob/master/playground.png)
