@@ -32,20 +32,34 @@ let first = { () -> () in
     
     // By default setjmp return 0
     switch exceptionCode {
-    case 0: // try block
+
+    //////////////////////
+    // try Block
+    //////////////////////
+    case 0:
         println("Calling second()")
         second()
         println("Exited second()") // This line will never be called
-        // Compiler is not smart enough to warn us about this
-    case 1: // catch block
+        // Compiler is not smart enough to warn us
+        // that this will never execute
+
+    ///////////////////////////////////
+    // catch Block for exceptionCode 1
+    ///////////////////////////////////
+    case 1:
         println("second() Failed with Exception Code: \(exceptionCode)")
         code = 42 // This is what exceptionCode will be set
         fallthrough
+        
+    ///////////////////////////////////////
+    // catch Block for any exeception code
+    ///////////////////////////////////////
     default:
         // memcpy is required to restore the stack so we go back to the setjmp below
         // Otherwise we will be stuck in a infinite loop where we would
         // keep going back to the setjmp above in this first function
         memcpy(envBuffer, env, jmpSize)
+        free(env) // Cleanup memory
         longjmp(envBuffer, code) // rethrowing with exception code of 42
     }
     
@@ -53,10 +67,18 @@ let first = { () -> () in
 }
 
 let exceptionCode = setjmp(envBuffer)
-if exceptionCode == 0 { // try block
+//////////////////////
+// try Block
+//////////////////////
+if exceptionCode == 0 {
     println("Calling first()")
     first() // Mocking exception throwning in this method
     println("Exited first()") // This will never be called
-} else { // catch block
+
+//////////////////////
+// catch Block
+//////////////////////
+} else {
     println("first() Failed with Exception Code: \(exceptionCode)")
 }
+free(envBuffer) // Cleanup memory
