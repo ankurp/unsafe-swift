@@ -1,7 +1,6 @@
-🔨.playground
+C experiments in Swift  🔨
 =
 
-# C experiments in Swift
 ## Simulating try catch block using setjmp and longjmp
 
 Swift is a great language because it lets you write safe code with concepts like optional, immmutability, automatic memory management using ARC and more. But there is also another side to Swift which is less known. That is you can use it to write unsafe code. In Swift we have access to all C library and functions. Using these you can allocate raw memory using `malloc`, or release it using `free` and manipulate the memory and perform pointer arithematic. These libraries are available in Swift to offer interoperability into Objective-C and usually begin with the word `unsafe` letting the developer know they are going down the dark path of seg fault. This power to write safe code to prevent beginner from shooting themselves in the foot but also giving advance developers who have been in the trenches of writing C or C++ code is what make Swift great.
