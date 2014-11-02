@@ -15,15 +15,15 @@ let exceptionCode = setjmp(envBuffer)
 // try Block
 //////////////////////
 if exceptionCode == 0 {
-    println("Calling first()")
+    println("Doing some stuff")
     longjmp(envBuffer, 42) // Raising an exception with value 42
-    println("Exited first()") // This will never be called
+    println("Exiting block") // This will never be called
 
 //////////////////////
 // catch Block
 //////////////////////
 } else {
-    println("first() Failed with Exception Code: \(exceptionCode)")
+    println("Exception Code: \(exceptionCode)")
 }
 free(envBuffer)
 ```
